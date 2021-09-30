@@ -1,0 +1,651 @@
+{% load static %}
+{% static "images" as baseUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Cooking With Tehreem Fatima - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'img/favicon.png' %}" rel="icon">
+  <link href="{% static 'img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static  'vendor/icofont/icofont.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/venobox/venobox.css' %}" rel="stylesheet">
+  <link href="{% static 'vendor/owl.carousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+  <!--Sweet Alert CDN-->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <script>
+
+    // Javascript Function to Alert user that your message has been successfully sent to Owner!
+    function send_message()
+    {
+      // Checking Using JQuery that form is filled completely or not 
+      var formInvalid = false;
+      $('#send_message_form input').each(function() 
+      {
+        if ($(this).val() === '') 
+        {
+          formInvalid = true;
+        }
+      }
+    );
+
+      // If form is not filled show Error Swal Alert box  
+      if (formInvalid)
+      {
+        swal("Invalid Data!", ", Please fill all fields!", "error");
+      }
+      else 
+      {
+        var $myForm = $('#send_message_form');
+
+        $myForm.submit(function(event)
+          {
+            event.preventDefault();
+            var $formData = $myForm.serialize();
+            var $thisURL = $myForm.attr('action') || window.location.href;
+                 
+            $.ajax({
+              method:'POST',
+              url: $thisURL,
+              data: $formData,
+              success: handleSuccess,
+              error: handleError,
+              });
+
+            function handleSuccess(data)
+              {
+                // swal is sweet alert message to show attractive alerts
+                swal("Let Tehreem Saleh make your favourite dish!", ", Your Message has been successfully sent!", "success");
+              }
+
+            function handleError(ThrowError)
+              {
+                console.log(ThrowError)
+                // swal Message not sent alerts
+                swal("Oops!", ", Something went wrong!", "error");
+              }
+
+          });
+      } // End of Else
+      
+    } // End of send_message Javascript Function
+
+  </script>
+
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
+    <div class="container text-right">
+      <i class="icofont-phone"></i> +92-3085140214
+      <i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center">
+
+      <div class="logo mr-auto">
+        <h5 class="text-light"><a href="/" style="color: orange;font-size: 23px;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;font-weight: bold;"><span>Cooking With Tehreem Saleh</span></a></h3>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#specials">Specials</a></li>
+          <li><a href="#events">Recent Recipes</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#chefs">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+
+          <!-- <li class="book-a-table text-center"><a href="#book-a-table">Download</a></li> -->
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+        <div class="carousel-inner" role="listbox">
+
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background: url( {% static 'img/slide/slide-1.jpg' %} );">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown"><span>Taste</span> Comes by <span>Creativity</span></h2>
+                <p class="animate__animated animate__fadeInUp">As much as healthy life! you have, As more beautiful life as you get  </p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="carousel-item" style="background: url( {% static 'img/slide/slide-2.jpg' %} );">
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">Make your family healthy</h2>
+                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="carousel-item" style="background: url( {% static 'img/slide/slide-3.png' %} );">
+            <div class="carousel-background"><img src=" {% static 'img/slide/slide-3.png' %} " alt=""></div>
+            <div class="carousel-container">
+              <div class="carousel-content">
+                <h2 class="animate__animated animate__fadeInDown">Dishes that make your day</h2>
+                <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+                <div>
+                  <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
+                  <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon icofont-simple-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon icofont-simple-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("{% static 'img/about.jpg' %}");'>
+            <a href="https://www.youtube.com/watch?v=IzvC17DqA2I" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+
+          <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+            <div class="content">
+              <h3>Welcome to our <strong>Family</strong></h3>
+              <p>
+                In this solution you will get Delicious recipes and Nostrums.
+              </p>
+              <p class="font-italic">
+                <strong>What is benefit of this website?</strong>
+              </p>
+              <ul>
+                <li><i class="bx bx-check-double"></i> You will find recipes according to your need without lots of efforts.</li>
+                <li><i class="bx bx-check-double"></i> You can download recipe to your android/apple device to read and make delicious recipes when you have no internet access.</li>
+                <li><i class="bx bx-check-double"></i> You can contact us to make dish according to your need.</li>
+              </ul>
+              <p>
+                Make and eat healthy food to catch all the vibes. &#128512; 
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Whu Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>What will you find on <span> <a href="https://www.youtube.com/channel/UCsg1rp0pxhqxEWW7r5CUc8w"> Our Youtube channel </a> </span></h2>
+          <p>There will be lots of Dishes,Recipes and Totka/Nostrums available to make your life healthy.</p>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4">
+            <div class="box">
+              <span>01</span>
+              <h4> Recipes </h4>
+              <p> Recipes that will make your day! </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>02</span>
+              <h4> Juices/Ice Cream </h4>
+              <p> Juices that will charge your mind </p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mt-4 mt-lg-0">
+            <div class="box">
+              <span>03</span>
+              <h4> Nostrums </h4>
+              <p> Nostrums/Totka that will make your life remain healthy </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Whu Us Section -->
+
+    <!-- ======= Menu Section ======= -->
+    <section id="menu" class="menu">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Check out our tasty <span>Menu</span></h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="menu-flters">
+              <li data-filter="*" class="filter-active">Show All</li>
+              
+              {% for recipe_category in recipe_categories %}
+
+              <li data-filter=".{{recipe_category.category_id}}">{{recipe_category.category_name}}</li>
+           
+              {% endfor %}
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="row menu-container">
+
+          {% for recipe in recipes %}
+
+          <div class="col-lg-6 menu-item {{recipe.recipe_category.category_id}}">
+            <div class="menu-content">
+              <a href="/recipe_details/{{recipe.recipe_id}}/">{{recipe.title}}</a><span>{{recipe.recipe_by}}</span>
+            </div>
+            <div class="menu-ingredients">
+              {{recipe.short_description}}
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Menu Section -->
+
+    <!-- ======= Specials Section ======= -->
+    <section id="specials" class="specials">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Check our <span>Specials</span></h2>
+          <p>Here are our some Special Recipes which will really make you feel <b style="color:blue;font-size:25px;"> Happy! </b> </p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-3">
+            <ul class="nav nav-tabs flex-column">
+              {% for recipe in recipes %}
+                {% if recipe.special and forloop.counter == 1 %}
+                <li class="nav-item">
+                  <a class="nav-link active show" data-toggle="tab" href="#tab-{{recipe.recipe_id}}">{{recipe.title}}</a>
+                </li>
+                {% elif recipe.special and forloop.counter > 1 %}
+              <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#tab-{{recipe.recipe_id}}">{{recipe.title}}</a>
+              </li>
+              {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="col-lg-9 mt-4 mt-lg-0">
+            <div class="tab-content">
+
+              {% for recipe in recipes %}
+                {% if recipe.special and forloop.counter == 1 %}
+              <div class="tab-pane active show" id="tab-{{recipe.recipe_id}}">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3 style="color: brown;font-family: 'Courier New', Courier, monospace;text-align: justify;"> RECIPE :- <span style="color: darkcyan;"> {{recipe.title}} </span> </br> AUTHOR :- <span style="color: darkcyan;"> {{recipe.author}} </span> </h3>
+                    <a class="btn btn-warning" href="/recipe_details/{{recipe.recipe_id}}/" role="button"> Visit </a>
+                    <p class="font-italic" style="padding-top: 1rem;" >{{recipe.short_description}}</p>
+                    <!-- <p> {{recipe.recipe_details}} </p> -->
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{{recipe.recipe_pic.url}}" alt="" class="img-fluid" style="height: 200px;width: 200px;">
+                  </div>
+                </div>
+              </div>
+                {% elif recipe.special and forloop.counter > 1 %}
+              <div class="tab-pane" id="tab-{{recipe.recipe_id}}">
+                <div class="row">
+                  <div class="col-lg-8 details order-2 order-lg-1">
+                    <h3 style="color: brown;font-family: 'Courier New', Courier, monospace;text-align: justify;"> RECIPE :- <span style="color: darkcyan;"> {{recipe.title}} </span> </br> AUTHOR :- <span style="color: darkcyan;"> {{recipe.author}} </span> </h3>
+                    <a class="btn btn-warning" href="/recipe_details/{{recipe.recipe_id}}/" role="button"> Visit </a>
+                    <p class="font-italic" style="padding-top: 1rem;">{{recipe.short_description}}</p>
+                    <!-- <p> {{recipe.recipe_details}} </p> -->
+                  </div>
+                  <div class="col-lg-4 text-center order-1 order-lg-2">
+                    <img src="{{recipe.recipe_pic.url}}" alt="" class="img-fluid" style="height: 200px;width: 200px;">
+                  </div>
+                </div>
+              </div>
+                {% endif %}
+              {% endfor %}
+              
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Specials Section -->
+
+    <!-- ======= Events Section ======= -->
+    <section id="events" class="events">
+      <div class="container">
+
+        <div class="section-title">
+          <h2> Recent <span> Videos </span> </h2>
+        </div>
+
+        <div class="owl-carousel events-carousel">
+
+          {% for recipe in recent_recipes|slice:"3" %}
+
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="{{recipe.recipe_pic.url}}" class="img-fluid" alt="" style="width: 600px;height: 400px;">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3 class=""> {{recipe.title}}  </h3>
+              <div class="price">
+                <p><span> {{recipe.author}} </span></p>
+              </div>
+              <a class="btn btn-light btn-sm" href="/recipe_details/{{recipe.recipe_id}}/" role="button"> Visit </a>
+              <p class="font-italic" style="margin-top: 1rem;">
+                {{ recipe.short_description }}
+              </p>
+              <ul>
+                <li><i class="icofont-check-circled"></i> Recipe Category :- {{ recipe.recipe_category.category_name }} </li>
+                <li><i class="icofont-check-circled"></i> Ingredients :- {{ recipe.ingredients }} </li>
+                <li><i class="icofont-check-circled"></i> Recipe By :- {{recipe.recipe_by}} </li>
+              </ul>
+              <p>
+                {{recipe.recipe_details}}
+              </p>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Events Section -->
+
+
+    <!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
+      <div class="container-fluid">
+
+        <div class="section-title">
+          <h2>Some Pictures of dishes from <span>Our Channel</span></h2>
+          <p> Pictures of Recipes, Juices, Ice Cream and Nostrums which we have uploaded on our youtube channel!  </p>
+        </div>
+
+        <div class="row no-gutters">
+
+          {% for recipe in recipes %}
+
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item">
+              <a href="{{recipe.recipe_pic.url}}" class="venobox" data-gall="gallery-item">
+                <img src="{{recipe.recipe_pic.url}}" alt="" class="img-fluid" style="width: 400px; height: 200px;">
+              </a>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+    <!-- ======= Chefs Section ======= -->
+    <section id="chefs" class="chefs">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Our Proffesional <span> Team </span></h2>
+          <p> We have an excellent team which is aalways ready to serve for humanity! </p>
+        </div>
+
+        <div class="row">
+
+          {% for user in all_users %}
+
+          <div class="col-lg-4 col-md-6">
+            <div class="member">
+              <div class="pic"><img src="{{ user.userprofile.ProfilePhoto.url }}" class="img-fluid" alt=""></div>
+              <div class="member-info">
+                <h4>{{user.first_name}} {{user.last_name}}</h4>
+                <span>{{user.userprofile.designation}}</span>
+                <div class="social">
+                  <a href="https://{{user.userprofile.twitter_link}}"><i class="icofont-twitter"></i></a>
+                  <a href="https://{{user.userprofile.facebook_link}}"><i class="icofont-facebook"></i></a>
+                  <a href="https://{{user.userprofile.instagram_link}}"><i class="icofont-instagram"></i></a>
+                  <a href="https://{{user.userprofile.linkedin_link}}"><i class="icofont-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Chefs Section -->
+
+    <!-- ======= Testimonials Section ======= -->
+    <section id="testimonials" class="testimonials">
+      <div class="container">
+
+        <div class="owl-carousel testimonials-carousel">
+
+          {% for user in all_users %}
+
+          <div class="testimonial-item">
+            <img src="{{ user.userprofile.ProfilePhoto.url }}" class="testimonial-img" alt="">
+            <h3>{{ user.first_name }} {{ user.last_name }} </h3>
+            <h4> {{ user.userprofile.designation }} </h4>
+            <div class="stars">
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+              <i class="icofont-star"></i>
+            </div>
+            <!----
+               <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+              </p>
+            -->
+            </div>
+            
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Testimonials Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2><span>Contact</span> Us</h2>
+          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m21!1m12!1m3!1d57604.4176786604!2d68.9785509222835!3d25.52917829036894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m6!3e6!4m3!3m2!1d25.529104999999998!2d69.0135706!4m0!5e0!3m2!1sen!2s!4v1628194262762!5m2!1sen!2s" frameborder="0" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <div class="container mt-5">
+
+        <div class="info-wrap">
+          <div class="row">
+            <div class="col-lg-3 col-md-6 info">
+              <i class="icofont-google-map"></i>
+              <h4>Location:</h4>
+              <p>A108 Adam Street<br>New York, NY 535022</p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+              <i class="icofont-clock-time icofont-rotate-90"></i>
+              <h4>Open Hours:</h4>
+              <p>Monday-Saturday:<br>11:00 AM - 2300 PM</p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+              <i class="icofont-envelope"></i>
+              <h4>Email:</h4>
+              <p>tahreemfatima273@gmail.com<br>mutaheraffan@gmail.com</p>
+            </div>
+
+            <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+              <i class="icofont-phone"></i>
+              <h4>Call:</h4>
+              <p>+92308-5140214<br>+92312-1315707</p>
+            </div>
+          </div>
+        </div>
+
+        <form action="/send_message/" method="POST" role="form" class="php-email-form" id="send_message_form">
+          {% csrf_token %}
+          <div class="form-row">
+            <div class="col-md-6 form-group">
+              <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+              <div class="validate"></div>
+            </div>
+            <div class="col-md-6 form-group">
+              <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+              <div class="validate"></div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+            <div class="validate"></div>
+          </div>
+        
+          <h3>{% for message in messsages %}
+            {{message}}
+            {% endfor %}
+          </h3>
+          
+          <div class="text-center"><button type="submit" onclick="send_message();">Send Message</button></div>
+        </form>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <h3>Delicious</h3>
+      <p> Thank you for choosing us and to come here </p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+      <div class="copyright">
+        &copy; Copyright <strong><span>Delicious</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        Designed by <a href="https://facebook.com/mutaheraffan14">Mutaher Affan</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendor/jquery.easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'vendor/jquery-sticky/jquery.sticky.js' %}"></script>
+  <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'vendor/venobox/venobox.min.js' %}"></script>
+  <script src="{% static 'vendor/owl.carousel/owl.carousel.min.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+</body>
+
+</html>
